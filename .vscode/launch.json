@@ -1,0 +1,51 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "No checks, no save, no pack",
+            "type": "PowerShell",
+            "request": "launch",
+            "script": "${workspaceRoot}/.vscode-functions/no-checks-no-save-no-pack.ps1",
+            "cwd": "${workspaceRoot}",
+
+        },
+        {
+            "name": "No checks, no save",
+            "type": "PowerShell",
+            "request": "launch",
+            "script": "${workspaceRoot}/.vscode-functions/no-checks-no-save.ps1",
+            "cwd": "${workspaceRoot}"
+        },{
+            "name": "No checks",
+            "type": "PowerShell",
+            "request": "launch",
+            "script": "${workspaceRoot}/.vscode-functions/no-checks.ps1",
+            "cwd": "${workspaceRoot}"
+        },
+        {
+            "name": "no save",
+            "type": "PowerShell",
+            "request": "launch",
+            "script": "${workspaceRoot}/.vscode-functions/no-save.ps1",
+            "cwd": "${workspaceRoot}"
+        },
+        {
+            "name": "no save, no repo check",
+            "type": "PowerShell",
+            "request": "launch",
+            "script": "${workspaceRoot}/.vscode-functions/no-save-no-repo-check.ps1",
+            "cwd": "${workspaceRoot}"
+        },
+        {
+            "name": "download",
+            "type": "PowerShell",
+            "request": "launch",
+            "script": "${workspaceRoot}/.vscode-functions/download.ps1",
+            "cwd": "${workspaceRoot}"
+        }
+
+    ]
+}

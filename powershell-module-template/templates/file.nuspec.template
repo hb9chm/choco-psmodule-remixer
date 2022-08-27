@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>[[PackageNameLower]]</id>
+    <version>[[PackageVersion]]</version>
+    <title>[[PackageName]] (PowerShell Module [[ModuleName]])</title>
+    <authors>see PSGallery</authors>
+    <owners>see PSGAllery</owners>
+    <licenseUrl>https://www.powershellgallery.com/</licenseUrl>
+    <projectUrl>https://www.powershellgallery.com/</projectUrl>
+    <iconUrl>https://www.powershellgallery.com/</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>See PSGallery
+
+You can pass the following parameters:
+
+* `/core`     - Installs the module in the AllUsers scope for PowerShell Core;
+* `/desktop`  - Installs the module in the AllUsers scope for Windows PowerShell (ie. Desktop Edition);
+
+You can pass both `/core` and `/desktop` parameters to install on both. If you pass no parameters then `/desktop` is assumed.
+
+_**NOTE: This module required at least PowerShell v3.**_
+
+</description>
+    <summary>see PSGallery.</summary>
+    <copyright>see PSGallery.</copyright>
+    <dependencies>
+      <dependency id="chocolatey" version="0.10.8" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="tools\*.*" target="tools" />
+  </files>
+</package>
