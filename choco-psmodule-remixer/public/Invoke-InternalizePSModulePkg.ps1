@@ -195,7 +195,7 @@ Function Invoke-InternalizePSModulePkg {
         if (($obj.status -eq "internalized") -and (!($noSave))) {
             if ($config.useDropPath -eq "yes") {
                 Write-Verbose "coping $($obj.nuspecID) to drop path"
-                Copy-Item (Get-ChildItem $obj.versionDir -Filter "*.nupkg").fullname $config.dropPath
+                Copy-Item (Get-ChildItem (Join-Path -Path $obj.versionDir -ChildPath $obj.nuspecID) -Filter "*.nupkg").fullname $config.dropPath
             }
 
             if ($config.pushPkgs -eq "yes") {
