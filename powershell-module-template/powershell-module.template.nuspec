@@ -2,15 +2,15 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>powershell-module.template</id>
-    <version>0.1.0</version>
+    <version>0.1.1</version>
     <title>Powershell Module Template</title>
-    <authors>see PSGallery</authors>
-    <owners>see PSGAllery</owners>
+    <authors>unknown</authors>
+    <owners>hb9chm</owners>
     <licenseUrl>https://www.powershellgallery.com/</licenseUrl>
     <projectUrl>https://www.powershellgallery.com/</projectUrl>
     <iconUrl>https://www.powershellgallery.com/</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>See PSGallery
+    <description>
 
 You can pass the following parameters for packages created with this template:
 
@@ -19,11 +19,11 @@ You can pass the following parameters for packages created with this template:
 
 You can pass both `/core` and `/desktop` parameters to install on both. If you pass no parameters then `/desktop` is assumed.
 
-_**NOTE: Modules created with this template required at least PowerShell v3.**_
+_**NOTE: Modules created with this template required at least PowerShell v5.1**_
 
 </description>
-    <summary>see PSGallery.</summary>
-    <copyright>see PSGallery.</copyright>
+    <summary>template for WindowsPowershell/Powershell modules packages for chocolatey</summary>
+    <copyright>unknown</copyright>
     <dependencies>
       <dependency id="chocolatey" version="0.10.8" />
     </dependencies>

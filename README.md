@@ -3,16 +3,29 @@
 
 Based on the choco remixer project on github from TheCakeIsNaOH.
 
-Downloads powershell modules from the powershell gallery, create a choco package for installing the powershell module (based on a choco template) and pack it.
+Downloads powershell modules from the powershell gallery, create a choco package for installing the powershell module (based on a choco template) and pack it for internal use.
 
-create template package with: choco pack running in the psmodule-template directory
 
-install the template package with: choco install .\powershell-module.template.0.1.0.nupkg -y
+## Prerequisites
 
-verify with: choco template list
+## Create the powershell-module template
 
-use template with: choco new test -f -t powershell-module PackageVersion=1.0.0 ModuleName=test-ps
+Create the template package with: `choco pack running in the psmodule-template directory`
 
+Install the template package with: `choco install .\powershell-module.template.x.y.z.nupkg -y`
+
+Verify the installation with: `choco template list`
+
+### How to use the template manually
+
+Use template for creating the skeleton with:
+`choco new --Name=test.powershell --template powershell-module PackageVersion=1.0.0 ModuleName=test`
+
+Copy the zipped powershell module (test.zip for above example) in the above created "tools" folder.
+
+Use choco pack for packaging the module.
+
+### Package Parameters
 
 The created choco packages have the following parameters:
 
@@ -22,6 +35,29 @@ You can pass the following parameters for packages created with this template:
 * `/desktop`  - Installs the module in the AllUsers scope for Windows PowerShell (ie. Desktop Edition);
 
 You can pass both `/core` and `/desktop` parameters to install on both. If you pass no parameters then `/desktop` is assumed.
+
+
+
+## Usage of the Powershell Module Remixer
+
+1. Setup the configuration config.xml based on the config.xml.template.
+
+2. Setup the wanted powershell modules (download.xml) based on the download.xml.template (pspkg instead of pkg)
+
+3. Download with `Invoke-DownloadPSModulePkg`
+
+4. Internalize with `Invoke-InteralizsePSModulePkg`
+
+
+
+
+
+
+
+
+
+
+
 
 
 

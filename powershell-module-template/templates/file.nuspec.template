@@ -19,7 +19,7 @@ You can pass the following parameters:
 
 You can pass both `/core` and `/desktop` parameters to install on both. If you pass no parameters then `/desktop` is assumed.
 
-_**NOTE: This module required at least PowerShell v3.**_
+_**NOTE: This module required at least PowerShell v5.1**_
 
 </description>
     <summary>see PSGallery.</summary>

@@ -108,7 +108,8 @@ Function Invoke-InternalizePSModulePkg {
                 nupkgName  = $_.name
                 origPath   = $_.fullname
                 version    = $nuspecVersion
-                nuspecID   = $nuspecID
+                origNuspecID = $nuspecID
+                nuspecID   = "$nuspecID.powershell"
                 status     = $status
                 idDir      = $idDir
                 versionDir = $versionDir
@@ -138,7 +139,7 @@ Function Invoke-InternalizePSModulePkg {
             $startProcessArgs = @{
                 FilePath         = "choco"
                 ArgumentList     = "new $($obj.nuspecID)", "-t powershell-module", "-f", `
-                    "ModuleName=$($obj.nuspecID)", "PackageVersion=$($obj.Version)", `
+                    "ModuleName=$($obj.origNuspecID)", "PackageVersion=$($obj.Version)", `
                     "--limit-output"
                 WorkingDirectory = $obj.versionDir
                 NoNewWindow      = $true
@@ -160,7 +161,7 @@ Function Invoke-InternalizePSModulePkg {
 
         if (!($failed)) {
             $zipDirectory = Join-Path -Path $obj.versionDir  -ChildPath $obj.nuspecID -AdditionalChildPath "tools"
-            $zipLocation = Join-Path -Path $zipDirectory -ChildPath "$($obj.nuspecID).zip"
+            $zipLocation = Join-Path -Path $zipDirectory -ChildPath "$($obj.origNuspecID).zip"
             Copy-Item -Path $obj.origPath -Destination $zipLocation
 
             Remove-NupkgMetaData -Path $zipLocation
