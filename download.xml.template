@@ -4,5 +4,6 @@
 <download>
 	<pspkg id="example-package-id">
 		<version>0.0.0.0</version>
+		<allowPreRelease>True</allowPreRelease>
 	</pspkg>
 </download>

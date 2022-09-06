@@ -19,9 +19,12 @@
         [XML]$internalizedXMLcontent = Get-Content $internalizedXMLPath
     }
 
-    Write-Verbose "adding $nuspecID $version to list of internalized packages"
-    $addVersion = $internalizedXMLcontent.CreateElement("version")
-    $null = $addVersion.AppendChild($internalizedXMLcontent.CreateTextNode("$version"))
-    $internalizedXMLcontent.SelectSingleNode("//pspkg[@id=""$nuspecID""]").appendchild($addVersion) | Out-Null
-    $internalizedXMLcontent.save($internalizedXMLPath)
+    # no duplicate versions
+    if (-not ($internalizedXMLcontent.SelectSingleNode("//pspkg[@id=""$nuspecID""]/version[""$version""]"))) {
+        Write-Verbose "adding $nuspecID $version to list of internalized packages"
+        $addVersion = $internalizedXMLcontent.CreateElement("version")
+        $null = $addVersion.AppendChild($internalizedXMLcontent.CreateTextNode("$version"))
+        $internalizedXMLcontent.SelectSingleNode("//pspkg[@id=""$nuspecID""]").appendchild($addVersion) | Out-Null
+        $internalizedXMLcontent.save($internalizedXMLPath)
+    }
 }

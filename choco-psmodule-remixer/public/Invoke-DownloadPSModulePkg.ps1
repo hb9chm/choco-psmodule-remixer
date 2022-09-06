@@ -51,8 +51,15 @@ Function Invoke-DownloadPSModulePkg {
     [XML]$downloadXMLcontent = Get-Content $downloadXML
 
     $downloadXMLcontent.SelectNodes("//pspkg") | ForEach-Object {
+        $allowPreRelease = $False
+        If (-not ([string]::IsNullOrEmpty($_.allowPreRelease)))
+        {
+            if ($_.allowPreRelease -eq "True") {
+                $allowPreRelease = $True
+            }
+        }
         If (-not ([string]::IsNullOrEmpty($_.version))) {
-            $pkg = Find-PSResource -Name $_.id -Version $_.version -Repository PSGallery
+            $pkg = Find-PSResource -Name $_.id -Version $_.version -Repository PSGallery -Prerelease:$allowPreRelease
             $version = (New-Object -TypeName NuGet.Versioning.NuGetVersion -ArgumentList $pkg.Version)
             $normalizedVersion = $version.ToNormalizedString()
             $nupkgFileName = "$($pkg.Name).$normalizedVersion.nupkg"
@@ -61,13 +68,13 @@ Function Invoke-DownloadPSModulePkg {
                 $pkg | Save-PSResource -Path $config.SearchPSModuleDir -AsNupkg -ErrorAction SilentlyContinue -Quiet
             }
         } else {
-            $pkg = Find-PSResource -Name $_.id -Repository PSGallery
+            $pkg = Find-PSResource -Name $_.id -Repository PSGallery -Prerelease:$allowPreRelease
             $version = New-Object -TypeName NuGet.Versioning.NuGetVersion -ArgumentList $pkg.Version
             $normalizedVersion = $version.ToNormalizedString()
             $nupkgFileName = "$($pkg.Name).$normalizedVersion.nupkg"
             if (($Force) -or (-not (Test-Path -LiteralPath (Join-Path $config.SearchPSModuleDir $nupkgFileName )))) {
                 Write-Verbose "Downloading newest package $($_.id) to $($config.searchPSModuleDir)"
-                $pkg | Save-PSResource -Path $config.SearchPSModuleDir -AsNupkg -ErrorAction SilentlyContinue -Quiet
+                $pkg | Save-PSResource -Path $config.SearchPSModuleDir -AsNupkg  -ErrorAction SilentlyContinue -Quiet
             }
         }
     }
